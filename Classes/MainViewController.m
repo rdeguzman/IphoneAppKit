@@ -38,14 +38,16 @@
 - (void)viewDidLoad {
 	NSLog(@"MainViewController.viewDidLoad");
     [super viewDidLoad];
+	
+	[self initDatabase];
+	[self initButtons];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
 	NSLog(@"MainViewController.viewWillAppear");
     [super viewWillAppear:YES];
 	
-	[self initDatabase];
-	[self initButtons];
+	[self.navigationController setNavigationBarHidden:YES animated:NO];
 }
 
 /*
@@ -86,26 +88,37 @@
 
 #define PADDING_VERTICAL 5.0f
 #define BUTTON_HEIGHT 40.0f
-#define BUTTON_ORIGIN_X 20.0f
+#define BUTTON_WIDTH 160.0f
+#define BUTTON_ORIGIN_X (320.0f - BUTTON_WIDTH)/2.0f
 #define BUTTON_ORIGIN_Y 20.0f
 
 - (void)initButtons{
 	NSLog(@"MainViewController.initButtons");
 	CGFloat totalHeight = BUTTON_ORIGIN_Y;
 	
+	UIImage* buttonImage = [UIImage imageNamed:@"button_center_light_gray.png"];
+	
 	for(NSDictionary* section in arraySections){
 		NSString* title = [section objectForKey:@"title"];
 		
-		UIButton* button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-		[button addTarget:self action:@selector(aMethod:) forControlEvents:UIControlEventTouchDown];
+		UIButton* button = [UIButton buttonWithType:UIButtonTypeCustom];
+		button.frame = CGRectMake(BUTTON_ORIGIN_X, totalHeight, BUTTON_WIDTH, BUTTON_HEIGHT);
+		[button setBackgroundImage:buttonImage forState:UIControlStateNormal];
+		
+		[button addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchDown];
 		[button setTitle:title forState:UIControlStateNormal];
-		button.frame = CGRectMake(BUTTON_ORIGIN_X, totalHeight, 160.0, BUTTON_HEIGHT);
+		
+		button.titleLabel.font = [UIFont boldSystemFontOfSize:14.0f];
+		
 		[self.view addSubview:button];
 		
 		totalHeight = totalHeight + BUTTON_HEIGHT + PADDING_VERTICAL;
 	} 
-		
+}
 
+- (void)buttonPressed:(id)sender{
+	UIButton* button = (UIButton*)sender;
+	NSLog(@"MainViewController.buttonPressed %@", [button currentTitle]);
 }
 
 @end
