@@ -7,18 +7,27 @@
 //
 
 #import "AppKitAppDelegate.h"
+#import "ApplicationConstants.h"
+#import "MainViewController.h"
 
 @implementation AppKitAppDelegate
 
-@synthesize window;
-
+@synthesize window, dbPath;
 
 #pragma mark -
 #pragma mark Application lifecycle
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
+	dbPath = [[NSString alloc] initWithString:[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:DATABASE_NAME]];
     
     // Override point for customization after application launch.
+	MainViewController *viewController = [[MainViewController alloc] initWithNibName:nil bundle:nil];
+	navigationController = [[UINavigationController alloc] initWithRootViewController:viewController];
+										   
+	[viewController release];
+										   
+	[window addSubview: [navigationController view]];
     
     [self.window makeKeyAndVisible];
     
