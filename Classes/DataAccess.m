@@ -21,6 +21,15 @@
 	return self;
 }
 
+- (id)initWithPath:(NSString*)_path{
+	if( self = [super init]){
+		NSLog(@"DataAccess.initWithPath %@", _path);
+		db = [[FMDatabase alloc] initWithPath:_path];
+	}
+	
+	return self;
+}
+
 - (void)dealloc{
 	[db release];
 

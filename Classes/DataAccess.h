@@ -14,6 +14,8 @@
 	FMResultSet *rs;
 }
 
+- (id)initWithPath:(NSString*)_path;
+
 - (NSMutableArray*)getMainSections;
 
 - (UIImage*)getImageForId:(NSString*)_id;

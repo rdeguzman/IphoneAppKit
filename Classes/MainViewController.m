@@ -97,7 +97,7 @@
 	CGFloat totalHeight = BUTTON_ORIGIN_Y;
 	
 	UIImage* buttonImage = [UIImage imageNamed:@"button_center_light_gray.png"];
-	
+
 	for(NSDictionary* section in arraySections){
 		NSString* title = [section objectForKey:@"title"];
 		
