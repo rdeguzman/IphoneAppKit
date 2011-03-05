@@ -10,7 +10,7 @@
 #import "DataAccess.h"
 
 @interface MainViewController(private)
-- (void)initDatabase;
+- (void)initBackgroundImage;
 - (void)initButtons;
 @end
 
@@ -39,7 +39,7 @@
 	NSLog(@"MainViewController.viewDidLoad");
     [super viewDidLoad];
 	
-	[self initDatabase];
+	[self initBackgroundImage];
 	[self initButtons];
 }
 
@@ -78,11 +78,17 @@
     [super dealloc];
 }
 
-- (void)initDatabase{
-	NSLog(@"MainViewController.initDatabase");
+- (void)initBackgroundImage{
+	NSLog(@"MainViewController.initBackgroundImage");
 	
 	DataAccess *da = [[DataAccess alloc] init];
-	arraySections = [[[NSMutableArray alloc] initWithArray:[da getMainSections]] autorelease];
+	UIImage* backgroundImage = (UIImage*)[da getAppBackgroundImage];
+	
+	UIImageView* imageView = [[[UIImageView alloc] initWithImage:backgroundImage] autorelease];
+	imageView.frame = CGRectMake(0.0f, 0.0f, 320.0f, 460.0f);
+	imageView.contentMode = UIViewContentModeScaleToFill;
+	[self.view addSubview:imageView];
+	
 	[da release];
 }
 
@@ -94,6 +100,11 @@
 
 - (void)initButtons{
 	NSLog(@"MainViewController.initButtons");
+	
+	DataAccess *da = [[DataAccess alloc] init];
+	arraySections = [[[NSMutableArray alloc] initWithArray:[da getMainSections]] autorelease];
+	[da release];
+	
 	CGFloat totalHeight = BUTTON_ORIGIN_Y;
 	
 	UIImage* buttonImage = [UIImage imageNamed:@"button_center_light_gray.png"];

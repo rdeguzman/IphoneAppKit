@@ -1,9 +1,9 @@
 //
-//  ItShouldHaveSections.m
-//  UnitTests
+//  TestDataAccess.m
+//  AppKit
 //
-//  Created by Brett Schuchert on 11/9/10.
-//  Copyright 2010 Brett L. Schuchert. Use at will, just don't blame me.
+//  Created by rupert on 5/03/11.
+//  Copyright 2011 2RMobile. All rights reserved.
 //
 
 #import <GHUnitIOS/GHUnit.h>
@@ -13,12 +13,12 @@
 #import "DataAccess.h"
 
 
-@interface ItShouldHaveSections : GHTestCase {
+@interface TestDataAccess : GHTestCase {
     DataAccess *da;
 }
 @end
 
-@implementation ItShouldHaveSections
+@implementation TestDataAccess
 
 -(void)setUp {
     da = [[DataAccess alloc] initWithPath:@"/Volumes/rupert/projects/iphone/2RMobile/AppKit/appkit.db"];
@@ -33,5 +33,11 @@
 	NSArray *arrayRecords = [[NSArray alloc] initWithArray:[da getMainSections]];
     GHAssertEquals(5, (int)[arrayRecords count], nil);
 	[arrayRecords release];
+}
+
+-(void)testGetBackgroundImage{
+	UIImage* backgroundImage = nil;
+	backgroundImage = (UIImage *)[da getAppBackgroundImage];
+	GHAssertNotNil(backgroundImage, nil);
 }
 @end

@@ -18,6 +18,8 @@
 
 - (NSMutableArray*)getMainSections;
 
+- (UIImage*)getAppBackgroundImage;
+
 - (UIImage*)getImageForId:(NSString*)_id;
 
 @end

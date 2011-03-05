@@ -69,6 +69,29 @@
 	return array;
 }
 
+- (UIImage*)getAppBackgroundImage{
+	NSLog(@"DataAccess.getAppBackgroundImage");
+	UIImage* image = nil;
+	
+	[db open];
+	
+	rs = [db executeQuery:@"SELECT background_image FROM app_profile"];
+	
+	if ([db hadError]) {
+        NSLog(@"Err %d: %@", [db lastErrorCode], [db lastErrorMessage]);
+    }
+	
+	if( [rs next] ){
+		image = [[[UIImage alloc] initWithData:[rs dataForColumn:@"background_image"]] autorelease];
+		NSLog(@"DataAccess.getAppBackgroundImage found image (%f, %f)", image.size.width, image.size.height);
+	}
+	
+	[rs close];
+	[db close];
+	
+	return image;
+}
+
 - (UIImage*)getImageForId:(NSString*)_id{
 	NSLog(@"DataAccess.getImageForId: %@", _id);
 	NSNumber* picture_id = [NSNumber numberWithInt:[_id intValue]];

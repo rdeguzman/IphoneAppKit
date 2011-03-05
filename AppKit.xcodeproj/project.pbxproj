@@ -15,7 +15,6 @@
 		28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow.xib */; };
 		9A289FEC1321E1B000CB5C68 /* GHUnitIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AEE86D31321B34E009D90EE /* GHUnitIOS.framework */; };
 		9A28A01F1321E2E500CB5C68 /* GHUnitIOSTestMain.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A28A01D1321E2E500CB5C68 /* GHUnitIOSTestMain.m */; };
-		9A28A03E1321E38C00CB5C68 /* ItShouldHaveSections.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A28A03D1321E38C00CB5C68 /* ItShouldHaveSections.m */; };
 		9A28A0E11321EDE900CB5C68 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC3FBE213208D250065FC50 /* libsqlite3.dylib */; };
 		9A28A0F01321EECD00CB5C68 /* DataAccess.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AC3FC3913208F4D0065FC50 /* DataAccess.m */; };
 		9A28A0F41321EEDF00CB5C68 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AC3FBE613208D3D0065FC50 /* FMDatabase.m */; };
@@ -23,6 +22,7 @@
 		9A28A0F61321EEE600CB5C68 /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AC3FBEB13208D3D0065FC50 /* FMResultSet.m */; };
 		9A28A1151321F06600CB5C68 /* AppKit.app in Resources */ = {isa = PBXBuildFile; fileRef = 1D6058910D05DD3D006BFB54 /* AppKit.app */; };
 		9A28A1161321F06700CB5C68 /* appkit.db in Resources */ = {isa = PBXBuildFile; fileRef = 9AC3FBDE13208D040065FC50 /* appkit.db */; };
+		9A28A1D41321FCBC00CB5C68 /* TestDataAccess.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A28A1D31321FCBC00CB5C68 /* TestDataAccess.m */; };
 		9AC3FBDF13208D040065FC50 /* appkit.db in Resources */ = {isa = PBXBuildFile; fileRef = 9AC3FBDE13208D040065FC50 /* appkit.db */; };
 		9AC3FBE313208D250065FC50 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC3FBE213208D250065FC50 /* libsqlite3.dylib */; };
 		9AC3FBEC13208D3D0065FC50 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AC3FBE613208D3D0065FC50 /* FMDatabase.m */; };
@@ -58,7 +58,7 @@
 		32CA4F630368D1EE00C91783 /* AppKit_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppKit_Prefix.pch; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* AppKit-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "AppKit-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		9A28A01D1321E2E500CB5C68 /* GHUnitIOSTestMain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GHUnitIOSTestMain.m; path = UnitTests/GHUnitIOSTestMain.m; sourceTree = "<group>"; };
-		9A28A03D1321E38C00CB5C68 /* ItShouldHaveSections.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ItShouldHaveSections.m; path = UnitTests/ItShouldHaveSections.m; sourceTree = "<group>"; };
+		9A28A1D31321FCBC00CB5C68 /* TestDataAccess.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TestDataAccess.m; path = UnitTests/TestDataAccess.m; sourceTree = "<group>"; };
 		9AC3FBDD13208CBB0065FC50 /* ApplicationConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplicationConstants.h; sourceTree = "<group>"; };
 		9AC3FBDE13208D040065FC50 /* appkit.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = appkit.db; sourceTree = SOURCE_ROOT; };
 		9AC3FBE213208D250065FC50 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
@@ -234,8 +234,8 @@
 			children = (
 				9A28A14D1321F89100CB5C68 /* Frameworks */,
 				9A28A01D1321E2E500CB5C68 /* GHUnitIOSTestMain.m */,
-				9A28A03D1321E38C00CB5C68 /* ItShouldHaveSections.m */,
 				9AEE86931321B0E9009D90EE /* UnitTests-Info.plist */,
+				9A28A1D31321FCBC00CB5C68 /* TestDataAccess.m */,
 			);
 			name = UnitTests;
 			sourceTree = "<group>";
@@ -345,11 +345,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				9A28A01F1321E2E500CB5C68 /* GHUnitIOSTestMain.m in Sources */,
-				9A28A03E1321E38C00CB5C68 /* ItShouldHaveSections.m in Sources */,
 				9A28A0F01321EECD00CB5C68 /* DataAccess.m in Sources */,
 				9A28A0F41321EEDF00CB5C68 /* FMDatabase.m in Sources */,
 				9A28A0F51321EEE000CB5C68 /* FMDatabaseAdditions.m in Sources */,
 				9A28A0F61321EEE600CB5C68 /* FMResultSet.m in Sources */,
+				9A28A1D41321FCBC00CB5C68 /* TestDataAccess.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
