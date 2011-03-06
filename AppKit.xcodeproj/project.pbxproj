@@ -23,6 +23,8 @@
 		9A28A1151321F06600CB5C68 /* AppKit.app in Resources */ = {isa = PBXBuildFile; fileRef = 1D6058910D05DD3D006BFB54 /* AppKit.app */; };
 		9A28A1161321F06700CB5C68 /* appkit.db in Resources */ = {isa = PBXBuildFile; fileRef = 9AC3FBDE13208D040065FC50 /* appkit.db */; };
 		9A28A1D41321FCBC00CB5C68 /* TestDataAccess.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A28A1D31321FCBC00CB5C68 /* TestDataAccess.m */; };
+		9AB853F113238B7C00F8CD87 /* TestMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AB853F013238B7C00F8CD87 /* TestMainViewController.m */; };
+		9AB853F913238C5F00F8CD87 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AC3FC0313208E2C0065FC50 /* MainViewController.m */; };
 		9AC3FBDF13208D040065FC50 /* appkit.db in Resources */ = {isa = PBXBuildFile; fileRef = 9AC3FBDE13208D040065FC50 /* appkit.db */; };
 		9AC3FBE313208D250065FC50 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC3FBE213208D250065FC50 /* libsqlite3.dylib */; };
 		9AC3FBEC13208D3D0065FC50 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AC3FBE613208D3D0065FC50 /* FMDatabase.m */; };
@@ -41,7 +43,7 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 1D6058900D05DD3D006BFB54 /* AppKit */;
+			remoteGlobalIDString = 1D6058900D05DD3D006BFB54;
 			remoteInfo = AppKit;
 		};
 /* End PBXContainerItemProxy section */
@@ -59,6 +61,7 @@
 		8D1107310486CEB800E47090 /* AppKit-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "AppKit-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		9A28A01D1321E2E500CB5C68 /* GHUnitIOSTestMain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GHUnitIOSTestMain.m; path = UnitTests/GHUnitIOSTestMain.m; sourceTree = "<group>"; };
 		9A28A1D31321FCBC00CB5C68 /* TestDataAccess.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TestDataAccess.m; path = UnitTests/TestDataAccess.m; sourceTree = "<group>"; };
+		9AB853F013238B7C00F8CD87 /* TestMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TestMainViewController.m; path = UnitTests/TestMainViewController.m; sourceTree = "<group>"; };
 		9AC3FBDD13208CBB0065FC50 /* ApplicationConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplicationConstants.h; sourceTree = "<group>"; };
 		9AC3FBDE13208D040065FC50 /* appkit.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = appkit.db; sourceTree = SOURCE_ROOT; };
 		9AC3FBE213208D250065FC50 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
@@ -236,6 +239,7 @@
 				9A28A01D1321E2E500CB5C68 /* GHUnitIOSTestMain.m */,
 				9AEE86931321B0E9009D90EE /* UnitTests-Info.plist */,
 				9A28A1D31321FCBC00CB5C68 /* TestDataAccess.m */,
+				9AB853F013238B7C00F8CD87 /* TestMainViewController.m */,
 			);
 			name = UnitTests;
 			sourceTree = "<group>";
@@ -350,6 +354,8 @@
 				9A28A0F51321EEE000CB5C68 /* FMDatabaseAdditions.m in Sources */,
 				9A28A0F61321EEE600CB5C68 /* FMResultSet.m in Sources */,
 				9A28A1D41321FCBC00CB5C68 /* TestDataAccess.m in Sources */,
+				9AB853F113238B7C00F8CD87 /* TestMainViewController.m in Sources */,
+				9AB853F913238C5F00F8CD87 /* MainViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

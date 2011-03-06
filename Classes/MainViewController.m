@@ -16,7 +16,7 @@
 
 @implementation MainViewController
 
-@synthesize arraySections;
+@synthesize arraySections, imageViewBackground;
 
 // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
@@ -24,6 +24,7 @@
     if (self) {
         // Custom initialization.
 		self.title = @"MainView";
+		imageViewBackground = nil;
     }
     return self;
 }
@@ -74,21 +75,24 @@
 
 - (void)dealloc {
 	[arraySections release];
+	[imageViewBackground release];
 	
     [super dealloc];
+}
+
+- (void)setBackgroundImage:(UIImage*)_image{
+	imageViewBackground = [[UIImageView alloc] initWithImage:_image];
+	imageViewBackground.frame = CGRectMake(0.0f, 0.0f, 320.0f, 460.0f);
+	imageViewBackground.contentMode = UIViewContentModeScaleToFill;
+	imageViewBackground.accessibilityLabel = @"backgroundImageView";
+	[self.view addSubview:imageViewBackground];
 }
 
 - (void)initBackgroundImage{
 	NSLog(@"MainViewController.initBackgroundImage");
 	
 	DataAccess *da = [[DataAccess alloc] init];
-	UIImage* backgroundImage = (UIImage*)[da getAppBackgroundImage];
-	
-	UIImageView* imageView = [[[UIImageView alloc] initWithImage:backgroundImage] autorelease];
-	imageView.frame = CGRectMake(0.0f, 0.0f, 320.0f, 460.0f);
-	imageView.contentMode = UIViewContentModeScaleToFill;
-	[self.view addSubview:imageView];
-	
+	[self setBackgroundImage:(UIImage*)[da getAppBackgroundImage]];
 	[da release];
 }
 

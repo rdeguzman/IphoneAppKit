@@ -11,8 +11,12 @@
 
 @interface MainViewController : UIViewController {
 	NSMutableArray *arraySections;
+	UIImageView* imageViewBackground;
 }
 
 @property(nonatomic, retain) NSMutableArray *arraySections;
+@property(nonatomic, retain) UIImageView* imageViewBackground;
+
+- (void)setBackgroundImage:(UIImage*)_image;
 
 @end
