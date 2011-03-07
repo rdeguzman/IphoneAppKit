@@ -8,11 +8,7 @@
 
 #import "MainViewController.h"
 #import "DataAccess.h"
-
-@interface MainViewController(private)
-//- (void)initBackgroundImage;
-//- (void)initButtons;
-@end
+#import "ListTableViewController.h"
 
 @implementation MainViewController
 
@@ -28,6 +24,7 @@
 		
 		arraySections = nil;
 		imageViewBackground = nil;
+		firstRun = YES;
     }
     return self;
 }
@@ -51,7 +48,14 @@
 	NSLog(@"MainViewController.viewWillAppear");
     [super viewWillAppear:YES];
 	
-	[self.navigationController setNavigationBarHidden:YES animated:NO];
+	if (firstRun) {
+		[self.navigationController setNavigationBarHidden:YES animated:NO];
+		firstRun = NO;
+	}
+	else{
+		[self.navigationController setNavigationBarHidden:YES animated:YES];
+	}
+	
 }
 
 /*
@@ -144,6 +148,20 @@
 	int i = (int)[button tag];
 	NSDictionary* section = [arraySections objectAtIndex:i];
 	NSLog(@"MainViewController.section.title: %@", [section objectForKey:@"title"]);
+	
+	[self createListTableViewController:section];
+}
+
+- (BOOL)createListTableViewController:(NSDictionary*)_section{
+	BOOL flag = false;
+	
+	NSLog(@"MainViewController.createListTableViewController");
+	ListTableViewController *tableViewController = [[ListTableViewController alloc] initWithDictionary:_section];
+	[self.navigationController pushViewController:tableViewController animated:YES];
+	[tableViewController release];
+	
+	flag = true;
+	return flag;
 }
 
 @end

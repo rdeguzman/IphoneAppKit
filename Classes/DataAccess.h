@@ -20,6 +20,6 @@
 
 - (UIImage*)getAppBackgroundImage;
 
-- (UIImage*)getImageForId:(NSString*)_id;
+- (NSMutableArray*)getPagesForSection:(NSString*)_section_id;
 
 @end

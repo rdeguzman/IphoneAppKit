@@ -23,6 +23,7 @@
 }
 
 -(void)tearDown {
+	[viewController release];
 }
 
 -(void)testShouldHaveBackgroundImage {
@@ -35,6 +36,13 @@
 -(void)testShouldHaveButtons{
 	[viewController initButtons];
 	GHAssertNotNil([viewController arraySections], nil);
+}
+
+-(void)testShouldCreateListTableViewController{
+	[viewController initButtons];
+	NSDictionary* section = [[viewController arraySections] objectAtIndex:0];
+	BOOL flag = [viewController createListTableViewController:section];
+	GHAssertTrue(flag, nil);
 }
 
 @end

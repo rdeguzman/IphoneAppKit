@@ -12,6 +12,7 @@
 @interface MainViewController : UIViewController {
 	NSMutableArray *arraySections;
 	UIImageView* imageViewBackground;
+	BOOL firstRun;
 }
 
 @property(nonatomic, retain) NSMutableArray *arraySections;
@@ -19,5 +20,6 @@
 
 - (void)initBackgroundImage;
 - (void)initButtons;
+- (BOOL)createListTableViewController:(NSDictionary*)_section;
 
 @end

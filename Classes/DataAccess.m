@@ -93,24 +93,42 @@
 	return image;
 }
 
-- (UIImage*)getImageForId:(NSString*)_id{
-	NSLog(@"DataAccess.getImageForId: %@", _id);
-	NSNumber* picture_id = [NSNumber numberWithInt:[_id intValue]];
+- (NSMutableArray*)getPagesForSection:(NSString*)_section_id{
+	NSLog(@"DataAccess.getPagesForSection: %@", _section_id);
 	
-	UIImage* image = nil;
+	NSMutableArray *array = [[[NSMutableArray alloc] initWithObjects:nil] autorelease];
 	
 	[db open];
 	
-	FMResultSet* _rs = [db executeQuery:@"SELECT * FROM pictures WHERE id = ?", picture_id];
-	if( [_rs next] ){
-		image = [[[UIImage alloc] initWithData:[_rs dataForColumn:@"full_image"]] autorelease];
-		NSLog(@"DataAccess.getThumbImageForId found image (%f, %f)", image.size.width, image.size.height);
+	rs = [db executeQuery:@"SELECT * FROM pages WHERE section_id = ?", _section_id];
+	
+	if ([db hadError]) {
+        NSLog(@"Err %d: %@", [db lastErrorCode], [db lastErrorMessage]);
+    }
+	
+	while ([rs next]) {
+		NSArray *arrayObjects = [[[NSArray alloc] initWithObjects:	
+								  [rs stringForColumn:@"id"],
+								  [rs stringForColumn:@"title"],
+								  [rs stringForColumn:@"sub_title"],
+								  [rs stringForColumn:@"content"],
+								  nil] autorelease];
+		
+		NSArray *arrayKeys = [[[NSArray alloc] initWithObjects:@"id", @"title", @"sub_title", @"content", nil] autorelease];
+		
+		NSDictionary *obj = [[[NSDictionary alloc] initWithObjects:arrayObjects forKeys:arrayKeys] autorelease];
+		
+		[array addObject:obj];
 	}
 	
-	[_rs close];
+	NSLog(@"DataAccess.getPagesForSection: %d found", [array count]);
+	
+	[rs close];
 	[db close];
 	
-	return image;
+	return array;
 }
+
+
 
 @end

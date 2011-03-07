@@ -40,4 +40,10 @@
 	backgroundImage = (UIImage *)[da getAppBackgroundImage];
 	GHAssertNotNil(backgroundImage, nil);
 }
+
+-(void)testShouldHavePages{
+	NSMutableArray* arrayPages = [da getPagesForSection:@"2"];
+	GHAssertGreaterThan( (int)arrayPages.count, 0, nil);
+}
+
 @end
