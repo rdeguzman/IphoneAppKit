@@ -21,7 +21,7 @@
 @implementation TestDataAccess
 
 -(void)setUp {
-    da = [[DataAccess alloc] initWithPath:@"/Volumes/rupert/projects/iphone/2RMobile/AppKit/appkit.db"];
+	da = [[DataAccess alloc] init];
 }
 
 -(void)tearDown {

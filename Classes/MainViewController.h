@@ -17,6 +17,7 @@
 @property(nonatomic, retain) NSMutableArray *arraySections;
 @property(nonatomic, retain) UIImageView* imageViewBackground;
 
-- (void)setBackgroundImage:(UIImage*)_image;
+- (void)initBackgroundImage;
+- (void)initButtons;
 
 @end

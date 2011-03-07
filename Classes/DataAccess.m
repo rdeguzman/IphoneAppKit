@@ -15,6 +15,7 @@
 	if( self = [super init]){
 		NSLog(@"DataAccess.init");
 		AppKitAppDelegate *app = (AppKitAppDelegate *)[[UIApplication sharedApplication] delegate];
+		NSLog(@"DataAccess dbPath: %@", app.dbPath);
 		db = [[FMDatabase alloc] initWithPath:app.dbPath];
 	}
 	

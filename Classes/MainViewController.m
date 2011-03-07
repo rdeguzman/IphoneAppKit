@@ -10,8 +10,8 @@
 #import "DataAccess.h"
 
 @interface MainViewController(private)
-- (void)initBackgroundImage;
-- (void)initButtons;
+//- (void)initBackgroundImage;
+//- (void)initButtons;
 @end
 
 @implementation MainViewController
@@ -22,7 +22,8 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization.
+		NSLog(@"MainViewController.init");
+
 		self.title = @"MainView";
 		imageViewBackground = nil;
     }
@@ -90,10 +91,11 @@
 
 - (void)initBackgroundImage{
 	NSLog(@"MainViewController.initBackgroundImage");
-	
-	DataAccess *da = [[DataAccess alloc] init];
-	[self setBackgroundImage:(UIImage*)[da getAppBackgroundImage]];
-	[da release];
+	if(imageViewBackground == nil){
+		DataAccess *da = [[DataAccess alloc] init];
+		[self setBackgroundImage:(UIImage*)[da getAppBackgroundImage]];
+		[da release];
+	}
 }
 
 #define PADDING_VERTICAL 5.0f
