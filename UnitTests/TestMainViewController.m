@@ -32,4 +32,9 @@
 	GHAssertNotNil(imageView, nil);
 }
 
+-(void)testShouldHaveButtons{
+	[viewController initButtons];
+	GHAssertNotNil([viewController arraySections], nil);
+}
+
 @end

@@ -18,5 +18,7 @@
 	<string>1.0</string>
 	<key>NSMainNibFile</key>
 	<string></string>
+	<key>Application does not run in background</key>
+	<string>true</string>
 </dict>
 </plist>

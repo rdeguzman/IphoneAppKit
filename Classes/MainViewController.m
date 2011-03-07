@@ -25,6 +25,8 @@
 		NSLog(@"MainViewController.init");
 
 		self.title = @"MainView";
+		
+		arraySections = nil;
 		imageViewBackground = nil;
     }
     return self;
@@ -107,16 +109,18 @@
 - (void)initButtons{
 	NSLog(@"MainViewController.initButtons");
 	
-	DataAccess *da = [[DataAccess alloc] init];
-	arraySections = [[[NSMutableArray alloc] initWithArray:[da getMainSections]] autorelease];
-	[da release];
+	if(arraySections == nil){
+		DataAccess *da = [[DataAccess alloc] init];
+		arraySections = [[NSMutableArray alloc] initWithArray:[da getMainSections]];
+		[da release];
+	}
 	
 	CGFloat totalHeight = BUTTON_ORIGIN_Y;
 	
 	UIImage* buttonImage = [UIImage imageNamed:@"button_center_light_gray.png"];
 
-	for(NSDictionary* section in arraySections){
-		NSString* title = [section objectForKey:@"title"];
+	for(int i=0;i < arraySections.count; i++){
+		NSString* title = [[arraySections objectAtIndex:i] objectForKey:@"title"];
 		
 		UIButton* button = [UIButton buttonWithType:UIButtonTypeCustom];
 		button.frame = CGRectMake(BUTTON_ORIGIN_X, totalHeight, BUTTON_WIDTH, BUTTON_HEIGHT);
@@ -124,6 +128,7 @@
 		
 		[button addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchDown];
 		[button setTitle:title forState:UIControlStateNormal];
+		[button setTag:i];
 		
 		button.titleLabel.font = [UIFont boldSystemFontOfSize:14.0f];
 		
@@ -135,7 +140,10 @@
 
 - (void)buttonPressed:(id)sender{
 	UIButton* button = (UIButton*)sender;
-	NSLog(@"MainViewController.buttonPressed %@", [button currentTitle]);
+	NSLog(@"MainViewController.buttonPressed %@ tag: %d", [button currentTitle], [button tag]);
+	int i = (int)[button tag];
+	NSDictionary* section = [arraySections objectAtIndex:i];
+	NSLog(@"MainViewController.section.title: %@", [section objectForKey:@"title"]);
 }
 
 @end
