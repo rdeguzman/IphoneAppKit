@@ -21,4 +21,6 @@
 
 - (void)initPages;
 
+- (BOOL)showPageViewController:(NSDictionary*)_page;
+
 @end

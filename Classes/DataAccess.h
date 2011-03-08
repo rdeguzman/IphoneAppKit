@@ -24,4 +24,6 @@
 
 - (UIImage*)getDefaultThumbImageForPage:(NSString*)_page_id;
 
+- (UIImage*)getDefaultFullImageForPage:(NSString*)_page_id;
+
 @end

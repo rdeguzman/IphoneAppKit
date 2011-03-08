@@ -9,6 +9,11 @@
 #import "DataAccess.h"
 #import "AppKitAppDelegate.h"
 
+@interface DataAccess(private)
+- (NSData*)getImageForPage:(NSString*)_page_id dataColumn:(NSString*)_column;
+@end
+
+
 @implementation DataAccess
 
 - (id)init{
@@ -129,7 +134,43 @@
 }
 
 - (UIImage*)getDefaultThumbImageForPage:(NSString*)_page_id{
-	NSLog(@"DataAccess.getDefaultThumbImageForPage %@", _page_id);
+	NSData* imageData = [self getImageForPage:_page_id dataColumn:@"thumb_image"];
+	UIImage* image = [[[UIImage alloc] initWithData:imageData] autorelease];
+	NSLog(@"DataAccess.getDefaultThumbImageForPage found image (%f, %f)", image.size.width, image.size.height);
+	return image;
+}
+
+- (UIImage*)getDefaultFullImageForPage:(NSString*)_page_id{
+	NSData* imageData = [self getImageForPage:_page_id dataColumn:@"full_image"];
+	UIImage* image = [[[UIImage alloc] initWithData:imageData] autorelease];
+	NSLog(@"DataAccess.getFullThumbImageForPage found image (%f, %f)", image.size.width, image.size.height);
+	return image;
+}
+
+- (NSData*)getImageForPage:(NSString*)_page_id dataColumn:(NSString*)_column{
+	NSLog(@"DataAccess.getImageForPage %@", _page_id);
+	NSData* data = nil;
+	
+	[db open];
+	
+	rs = [db executeQuery:@"SELECT * FROM pictures WHERE page_id = ? LIMIT 1", _page_id];
+	
+	if ([db hadError]) {
+        NSLog(@"Err %d: %@", [db lastErrorCode], [db lastErrorMessage]);
+    }
+	
+	if( [rs next] ){
+		data = [[[NSData alloc] initWithData:[rs dataForColumn:_column]] autorelease];
+	}
+	
+	[rs close];
+	[db close];
+	
+	return data;
+}
+
+- (UIImage*)getImageForPageTest:(NSString*)_page_id dataColumn:(NSString*)_column{
+	NSLog(@"DataAccess.getImageForPage %@", _page_id);
 	UIImage* image = nil;
 	
 	[db open];
@@ -141,8 +182,8 @@
     }
 	
 	if( [rs next] ){
-		image = [[[UIImage alloc] initWithData:[rs dataForColumn:@"thumb_image"]] autorelease];
-		NSLog(@"DataAccess.getDefaultThumbImageForPage found image (%f, %f)", image.size.width, image.size.height);
+		image = [[[UIImage alloc] initWithData:[rs dataForColumn:_column]] autorelease];
+		NSLog(@"DataAccess.getImageForPage found image (%f, %f)", image.size.width, image.size.height);
 	}
 	
 	[rs close];

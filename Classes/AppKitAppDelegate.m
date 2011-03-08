@@ -24,6 +24,7 @@
     // Override point for customization after application launch.
 	MainViewController *viewController = [[MainViewController alloc] initWithNibName:nil bundle:nil];
 	navigationController = [[UINavigationController alloc] initWithRootViewController:viewController];
+	navigationController.navigationBar.barStyle = UIBarStyleBlack;
 										   
 	[viewController release];
 										   

@@ -153,14 +153,14 @@
 }
 
 - (BOOL)createListTableViewController:(NSDictionary*)_section{
-	BOOL flag = false;
+	BOOL flag = NO;
 	
 	NSLog(@"MainViewController.createListTableViewController");
 	ListTableViewController *tableViewController = [[ListTableViewController alloc] initWithDictionary:_section];
 	[self.navigationController pushViewController:tableViewController animated:YES];
 	[tableViewController release];
 	
-	flag = true;
+	flag = YES;
 	return flag;
 }
 

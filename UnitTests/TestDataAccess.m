@@ -53,4 +53,11 @@
 	GHAssertNotNil([da getDefaultThumbImageForPage:page_id], nil);
 }
 
+-(void)testShouldGetDafaultFullImageForPage{
+	NSMutableArray* arrayPages = [da getPagesForSection:@"2"];
+	NSDictionary* page = [arrayPages objectAtIndex:0];
+	NSString* page_id = [page objectForKey:@"id"];
+	GHAssertNotNil([da getDefaultFullImageForPage:page_id], nil);
+}
+
 @end

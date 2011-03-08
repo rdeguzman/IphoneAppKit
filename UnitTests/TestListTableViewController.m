@@ -19,8 +19,9 @@
 @implementation TestListTableViewController
 
 -(void)setUp {
+	//This should be the same in appkit.db > sections data
 	NSArray *arrayObjects = [[[NSArray alloc] initWithObjects:	
-							  @"1",
+							  @"2",
 							  @"Rooms", 
 							  nil] autorelease];
 	
@@ -43,6 +44,13 @@
 -(void)testShouldHaveData{
 	[viewController initPages];
 	GHAssertNotNil(viewController.arrayPages, nil);
+}
+
+-(void)testShouldCreatePageViewController{
+	[viewController initPages];
+	NSDictionary* page = [[viewController arrayPages] objectAtIndex:1];
+	BOOL flag = [viewController showPageViewController:page];
+	GHAssertTrue(flag, nil);
 }
 
 @end

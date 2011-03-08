@@ -27,6 +27,10 @@
 		9A85583613261CFC001AE438 /* UITableViewImageApplicationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A85583413261CFC001AE438 /* UITableViewImageApplicationCell.m */; };
 		9A85584413261DBE001AE438 /* ApplicationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A85583213261CFC001AE438 /* ApplicationCell.m */; };
 		9A85584513261DC9001AE438 /* UITableViewImageApplicationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A85583413261CFC001AE438 /* UITableViewImageApplicationCell.m */; };
+		9A855A7A13263C49001AE438 /* PageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A855A7913263C49001AE438 /* PageViewController.m */; };
+		9A855A7B13263C49001AE438 /* PageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A855A7913263C49001AE438 /* PageViewController.m */; };
+		9A855A8413263C87001AE438 /* PageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A855A8313263C87001AE438 /* PageViewController.xib */; };
+		9A855A8F13263D4C001AE438 /* enlarge.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A855A8E13263D4C001AE438 /* enlarge.png */; };
 		9AA68E071324C2F100FB9923 /* TestApplicationDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AA68E061324C2F100FB9923 /* TestApplicationDelegate.m */; };
 		9AA68EEC1324CDA800FB9923 /* ListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AA68EEB1324CDA800FB9923 /* ListTableViewController.m */; };
 		9AA68EEF1324CE3B00FB9923 /* ListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AA68EEB1324CDA800FB9923 /* ListTableViewController.m */; };
@@ -73,6 +77,10 @@
 		9A85583213261CFC001AE438 /* ApplicationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApplicationCell.m; sourceTree = "<group>"; };
 		9A85583313261CFC001AE438 /* UITableViewImageApplicationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UITableViewImageApplicationCell.h; sourceTree = "<group>"; };
 		9A85583413261CFC001AE438 /* UITableViewImageApplicationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UITableViewImageApplicationCell.m; sourceTree = "<group>"; };
+		9A855A7813263C49001AE438 /* PageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PageViewController.h; path = Classes/PageViewController.h; sourceTree = SOURCE_ROOT; };
+		9A855A7913263C49001AE438 /* PageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PageViewController.m; path = Classes/PageViewController.m; sourceTree = SOURCE_ROOT; };
+		9A855A8313263C87001AE438 /* PageViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = PageViewController.xib; path = Resources/xibs/PageViewController.xib; sourceTree = SOURCE_ROOT; };
+		9A855A8E13263D4C001AE438 /* enlarge.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = enlarge.png; path = Resources/images/enlarge.png; sourceTree = SOURCE_ROOT; };
 		9AA68E051324C2F100FB9923 /* TestApplicationDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestApplicationDelegate.h; path = UnitTests/TestApplicationDelegate.h; sourceTree = SOURCE_ROOT; };
 		9AA68E061324C2F100FB9923 /* TestApplicationDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TestApplicationDelegate.m; path = UnitTests/TestApplicationDelegate.m; sourceTree = SOURCE_ROOT; };
 		9AA68EEA1324CDA800FB9923 /* ListTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListTableViewController.h; sourceTree = "<group>"; };
@@ -174,6 +182,7 @@
 			isa = PBXGroup;
 			children = (
 				9AC3FDF51320ADBA0065FC50 /* images */,
+				9A855A8213263C87001AE438 /* xibs */,
 				9AC3FBDE13208D040065FC50 /* appkit.db */,
 				28AD733E0D9D9553002E5188 /* MainWindow.xib */,
 				8D1107310486CEB800E47090 /* AppKit-Info.plist */,
@@ -195,6 +204,8 @@
 		9A28A03B1321E34800CB5C68 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				9A855A7813263C49001AE438 /* PageViewController.h */,
+				9A855A7913263C49001AE438 /* PageViewController.m */,
 				9AC3FC0213208E2C0065FC50 /* MainViewController.h */,
 				9AC3FC0313208E2C0065FC50 /* MainViewController.m */,
 				9AA68EEA1324CDA800FB9923 /* ListTableViewController.h */,
@@ -231,6 +242,15 @@
 			name = UITableViewCell;
 			sourceTree = "<group>";
 		};
+		9A855A8213263C87001AE438 /* xibs */ = {
+			isa = PBXGroup;
+			children = (
+				9A855A8313263C87001AE438 /* PageViewController.xib */,
+			);
+			name = xibs;
+			path = Resources/xibs;
+			sourceTree = SOURCE_ROOT;
+		};
 		9AC3FBE413208D3D0065FC50 /* fmdb */ = {
 			isa = PBXGroup;
 			children = (
@@ -248,6 +268,7 @@
 		9AC3FDF51320ADBA0065FC50 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				9A855A8E13263D4C001AE438 /* enlarge.png */,
 				9AC3FDF61320ADBA0065FC50 /* buttons */,
 			);
 			name = images;
@@ -349,6 +370,8 @@
 				28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */,
 				9AC3FBDF13208D040065FC50 /* appkit.db in Resources */,
 				9AC3FDF81320ADBA0065FC50 /* button_center_light_gray.png in Resources */,
+				9A855A8413263C87001AE438 /* PageViewController.xib in Resources */,
+				9A855A8F13263D4C001AE438 /* enlarge.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -378,6 +401,7 @@
 				9AA68EEC1324CDA800FB9923 /* ListTableViewController.m in Sources */,
 				9A85584413261DBE001AE438 /* ApplicationCell.m in Sources */,
 				9A85584513261DC9001AE438 /* UITableViewImageApplicationCell.m in Sources */,
+				9A855A7A13263C49001AE438 /* PageViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -398,6 +422,7 @@
 				9AA68F491324D0F300FB9923 /* TestListTableViewController.m in Sources */,
 				9A85583513261CFC001AE438 /* ApplicationCell.m in Sources */,
 				9A85583613261CFC001AE438 /* UITableViewImageApplicationCell.m in Sources */,
+				9A855A7B13263C49001AE438 /* PageViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
