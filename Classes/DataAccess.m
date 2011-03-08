@@ -21,6 +21,8 @@
 		AppKitAppDelegate *app = (AppKitAppDelegate *)[[UIApplication sharedApplication] delegate];
 		//NSLog(@"DataAccess init dbPath: %@", app.dbPath);
 		db = [[FMDatabase alloc] initWithPath:app.dbPath];
+		[db open];
+
 	}
 	
 	return self;
@@ -30,12 +32,14 @@
 	if( self = [super init]){
 		NSLog(@"DataAccess.initWithPath %@", _path);
 		db = [[FMDatabase alloc] initWithPath:_path];
+		[db open];
 	}
 	
 	return self;
 }
 
 - (void)dealloc{
+	[db close];
 	[db release];
 
 	[super dealloc];
@@ -46,7 +50,6 @@
 	
 	NSMutableArray *array = [[[NSMutableArray alloc] initWithObjects:nil] autorelease];
 	
-	[db open];
 	rs = [db executeQuery:@"SELECT * FROM sections"];
 	
 	if ([db hadError]) {
@@ -69,7 +72,6 @@
 	NSLog(@"DataAccess.getMainSections: %d found", [array count]);
 	
 	[rs close];
-	[db close];
 	
 	return array;
 }
@@ -77,8 +79,6 @@
 - (UIImage*)getAppBackgroundImage{
 	NSLog(@"DataAccess.getAppBackgroundImage");
 	UIImage* image = nil;
-	
-	[db open];
 	
 	rs = [db executeQuery:@"SELECT background_image FROM app_profile"];
 	
@@ -92,7 +92,6 @@
 	}
 	
 	[rs close];
-	[db close];
 	
 	return image;
 }
@@ -101,8 +100,6 @@
 	NSLog(@"DataAccess.getPagesForSection: %@", _section_id);
 	
 	NSMutableArray *array = [[[NSMutableArray alloc] initWithObjects:nil] autorelease];
-	
-	[db open];
 	
 	rs = [db executeQuery:@"SELECT * FROM pages WHERE section_id = ?", _section_id];
 	
@@ -128,7 +125,6 @@
 	NSLog(@"DataAccess.getPagesForSection: %d found", [array count]);
 	
 	[rs close];
-	[db close];
 	
 	return array;
 }
@@ -151,8 +147,6 @@
 	NSLog(@"DataAccess.getImageForPage %@", _page_id);
 	NSData* data = nil;
 	
-	[db open];
-	
 	rs = [db executeQuery:@"SELECT * FROM pictures WHERE page_id = ? LIMIT 1", _page_id];
 	
 	if ([db hadError]) {
@@ -164,7 +158,6 @@
 	}
 	
 	[rs close];
-	[db close];
 	
 	return data;
 }
@@ -172,8 +165,6 @@
 - (UIImage*)getImageForPageTest:(NSString*)_page_id dataColumn:(NSString*)_column{
 	NSLog(@"DataAccess.getImageForPage %@", _page_id);
 	UIImage* image = nil;
-	
-	[db open];
 	
 	rs = [db executeQuery:@"SELECT * FROM pictures WHERE page_id = ? LIMIT 1", _page_id];
 	
@@ -187,7 +178,6 @@
 	}
 	
 	[rs close];
-	[db close];
 	
 	return image;
 }

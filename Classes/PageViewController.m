@@ -59,12 +59,18 @@
 
 	NSLog(@"image (%f, %f)", image.size.width, image.size.height);
 	imageview.image = image;
+	imageview.alpha = 0;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     NSLog(@"PageViewControllerb.viewWillAppear");
 	
 	[super viewWillAppear:animated];
+	
+	[UIView beginAnimations:@"fadePhotoThumb" context:NULL];
+	[UIView setAnimationDuration:0.75];
+	imageview.alpha = 1;
+	[UIView commitAnimations];
 	
 	//[self.navigationController setNavigationBarHidden:YES animated:YES];
 }

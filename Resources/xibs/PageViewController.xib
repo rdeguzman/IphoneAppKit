@@ -45,7 +45,7 @@
 					<object class="IBUITextView" id="754132117">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{0, 215}, {320, 236}}</string>
+						<string key="NSFrame">{{0, 215}, {320, 210}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">1</int>
