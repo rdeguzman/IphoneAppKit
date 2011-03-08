@@ -129,7 +129,15 @@
 	UIImageView* imageView = [[UIImageView alloc] initWithImage:image];
 	imageView.frame = CGRectMake(PADDING_LEFT, PADDING_TOP, TABLEVIEW_CELL_IMAGEVIEW_WIDTH, TABLEVIEW_CELL_IMAGEVIEW_HEIGHT);
 	imageView.contentMode = UIViewContentModeScaleToFill;
+	imageView.alpha = 0;
 	[bgView addSubview:imageView];
+	
+	/*
+	[UIView beginAnimations:@"fadePhotoThumb" context:NULL];
+	[UIView setAnimationDuration:0.75];
+	imageView.alpha = 1;
+	[UIView commitAnimations];
+	*/
 	
 	cell.photoUIView = bgView;
 	[bgView release];
