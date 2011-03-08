@@ -22,4 +22,6 @@
 
 - (NSMutableArray*)getPagesForSection:(NSString*)_section_id;
 
+- (UIImage*)getDefaultThumbImageForPage:(NSString*)_page_id;
+
 @end

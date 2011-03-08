@@ -8,6 +8,8 @@
 
 #import "ListTableViewController.h"
 #import "DataAccess.h"
+#import "UITableViewImageApplicationCell.h"
+#import "ApplicationConstants.h"
 
 @implementation ListTableViewController
 
@@ -90,22 +92,57 @@
     return arrayPages.count;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+	return TABLEVIEW_CELL_HEIGHT;
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	cell.backgroundColor = ((ApplicationCell *)cell).useDarkBackground ? DARK_BACKGROUND : LIGHT_BACKGROUND;
+    
+}
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    static NSString *CellIdentifier = @"Cell";
-    
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
-    }
-    
-    // Configure the cell...
-	NSDictionary* page = [arrayPages objectAtIndex:indexPath.row];
-	cell.textLabel.text = [page objectForKey:@"title"];
-    
-    return cell;
+	NSDictionary *page = (NSDictionary *)[arrayPages objectAtIndex:indexPath.row];
+	NSString *CellIdentifier = @"ImageCell";
+	ApplicationCell *cell = (ApplicationCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+	
+	if (cell == nil)
+	{
+		NSLog(@"ListTableViewController.cellForRowAtIndexPath creating ImageCell cell...");
+		cell = [[[UITableViewImageApplicationCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+	}
+	else{
+		NSLog(@"ListTableViewController.cellForRowAtIndexPath dequeue for %@", CellIdentifier);
+	}
+	
+	UIView* bgView = [[UIView alloc] initWithFrame:CGRectMake(PADDING_LEFT, PADDING_TOP, TABLEVIEW_CELL_THUMB_BACKGROUND_WIDTH, TABLEVIEW_CELL_THUMB_BACKGROUND_HEIGHT)];
+	bgView.backgroundColor = [UIColor whiteColor];
+	
+	DataAccess* da = [[DataAccess alloc] init];
+	NSString* page_id = [page objectForKey:@"id"];
+	UIImage* image = [da getDefaultThumbImageForPage:page_id];
+	NSLog(@"image (%f, %f)", image.size.width, image.size.height);
+  
+	UIImageView* imageView = [[UIImageView alloc] initWithImage:image];
+	imageView.frame = CGRectMake(PADDING_LEFT, PADDING_TOP, TABLEVIEW_CELL_IMAGEVIEW_WIDTH, TABLEVIEW_CELL_IMAGEVIEW_HEIGHT);
+	imageView.contentMode = UIViewContentModeScaleToFill;
+	[bgView addSubview:imageView];
+	
+	cell.photoUIView = bgView;
+	[bgView release];
+    [da release];
+	[imageView release];
+	
+	// Display dark and light background in alternate rows -- see tableView:willDisplayCell:forRowAtIndexPath:.
+	cell.useDarkBackground = (indexPath.row % 2 == 0);
+	
+	cell.title = [page objectForKey:@"title"];
+	cell.subtitle = [page objectForKey:@"content"];
+	
+	return cell;
 }
 
 

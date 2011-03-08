@@ -13,9 +13,8 @@
 
 - (id)init{
 	if( self = [super init]){
-		NSLog(@"DataAccess.init");
 		AppKitAppDelegate *app = (AppKitAppDelegate *)[[UIApplication sharedApplication] delegate];
-		NSLog(@"DataAccess dbPath: %@", app.dbPath);
+		//NSLog(@"DataAccess init dbPath: %@", app.dbPath);
 		db = [[FMDatabase alloc] initWithPath:app.dbPath];
 	}
 	
@@ -127,6 +126,29 @@
 	[db close];
 	
 	return array;
+}
+
+- (UIImage*)getDefaultThumbImageForPage:(NSString*)_page_id{
+	NSLog(@"DataAccess.getDefaultThumbImageForPage %@", _page_id);
+	UIImage* image = nil;
+	
+	[db open];
+	
+	rs = [db executeQuery:@"SELECT * FROM pictures WHERE page_id = ? LIMIT 1", _page_id];
+	
+	if ([db hadError]) {
+        NSLog(@"Err %d: %@", [db lastErrorCode], [db lastErrorMessage]);
+    }
+	
+	if( [rs next] ){
+		image = [[[UIImage alloc] initWithData:[rs dataForColumn:@"thumb_image"]] autorelease];
+		NSLog(@"DataAccess.getDefaultThumbImageForPage found image (%f, %f)", image.size.width, image.size.height);
+	}
+	
+	[rs close];
+	[db close];
+	
+	return image;
 }
 
 
