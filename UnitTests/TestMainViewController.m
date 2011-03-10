@@ -35,13 +35,20 @@
 
 -(void)testShouldHaveButtons{
 	[viewController initButtons];
-	GHAssertNotNil([viewController arraySections], nil);
+	GHAssertNotNil([viewController arrayButtons], nil);
 }
 
--(void)testShouldCreateListTableViewController{
+-(void)testShouldShowListTableViewController{
 	[viewController initButtons];
-	NSDictionary* section = [[viewController arraySections] objectAtIndex:0];
-	BOOL flag = [viewController createListTableViewController:section];
+	NSDictionary* section = [[viewController arrayButtons] objectAtIndex:1];
+	BOOL flag = [viewController showListTableViewController:section];
+	GHAssertTrue(flag, nil);
+}
+
+-(void)testShouldShowPageViewController{
+	[viewController initButtons];
+	NSDictionary* page = [[viewController arrayButtons] objectAtIndex:1];
+	BOOL flag = [viewController showPageViewController:page];
 	GHAssertTrue(flag, nil);
 }
 

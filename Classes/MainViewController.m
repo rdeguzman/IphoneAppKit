@@ -9,10 +9,11 @@
 #import "MainViewController.h"
 #import "DataAccess.h"
 #import "ListTableViewController.h"
+#import "PageViewController.h"
 
 @implementation MainViewController
 
-@synthesize arraySections, imageViewBackground;
+@synthesize arrayButtons, imageViewBackground;
 
 // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
@@ -22,7 +23,7 @@
 
 		self.title = @"MainView";
 		
-		arraySections = nil;
+		arrayButtons = nil;
 		imageViewBackground = nil;
 		firstRun = YES;
     }
@@ -81,7 +82,7 @@
 
 
 - (void)dealloc {
-	[arraySections release];
+	[arrayButtons release];
 	[imageViewBackground release];
 	
     [super dealloc];
@@ -113,9 +114,9 @@
 - (void)initButtons{
 	NSLog(@"MainViewController.initButtons");
 	
-	if(arraySections == nil){
+	if(arrayButtons == nil){
 		DataAccess *da = [[DataAccess alloc] init];
-		arraySections = [[NSMutableArray alloc] initWithArray:[da getMainSections]];
+		arrayButtons = [[NSMutableArray alloc] initWithArray:[da getButtons]];
 		[da release];
 	}
 	
@@ -123,8 +124,8 @@
 	
 	UIImage* buttonImage = [UIImage imageNamed:@"button_center_light_gray.png"];
 
-	for(int i=0;i < arraySections.count; i++){
-		NSString* title = [[arraySections objectAtIndex:i] objectForKey:@"title"];
+	for(int i=0;i < arrayButtons.count; i++){
+		NSString* title = [[arrayButtons objectAtIndex:i] objectForKey:@"title"];
 		
 		UIButton* button = [UIButton buttonWithType:UIButtonTypeCustom];
 		button.frame = CGRectMake(BUTTON_ORIGIN_X, totalHeight, BUTTON_WIDTH, BUTTON_HEIGHT);
@@ -146,16 +147,25 @@
 	UIButton* button = (UIButton*)sender;
 	NSLog(@"MainViewController.buttonPressed %@ tag: %d", [button currentTitle], [button tag]);
 	int i = (int)[button tag];
-	NSDictionary* section = [arraySections objectAtIndex:i];
-	NSLog(@"MainViewController.section.title: %@", [section objectForKey:@"title"]);
+	NSDictionary* buttonData = [arrayButtons objectAtIndex:i];
 	
-	[self createListTableViewController:section];
+	NSString* tableName = [buttonData objectForKey:@"table_name"];
+	NSLog(@"MainViewController.butonPressed: tableName: %@", tableName);
+	
+	if( [tableName isEqualToString:@"Section"] ){
+		[self showListTableViewController:buttonData];
+	}
+	else if( [tableName isEqualToString:@"Page"] ){
+		[self showPageViewController:buttonData];
+	}
+	
+	
 }
 
-- (BOOL)createListTableViewController:(NSDictionary*)_section{
+- (BOOL)showListTableViewController:(NSDictionary*)_section{
 	BOOL flag = NO;
 	
-	NSLog(@"MainViewController.createListTableViewController");
+	NSLog(@"MainViewController.showListTableViewController");
 	ListTableViewController *tableViewController = [[ListTableViewController alloc] initWithDictionary:_section];
 	[self.navigationController pushViewController:tableViewController animated:YES];
 	[tableViewController release];
@@ -164,4 +174,15 @@
 	return flag;
 }
 
+- (BOOL)showPageViewController:(NSDictionary*)_page{
+	BOOL flag = NO;
+	
+	NSLog(@"MainViewController.showPageViewController");
+	PageViewController *pageView = [[PageViewController alloc] initWithNibName:@"PageViewController" bundle:nil withDictionary:_page];
+	[self.navigationController pushViewController:pageView animated:YES];
+	[pageView release];
+	
+	flag = YES;
+	return flag;
+}
 @end

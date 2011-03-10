@@ -10,16 +10,17 @@
 
 
 @interface MainViewController : UIViewController {
-	NSMutableArray *arraySections;
+	NSMutableArray *arrayButtons;
 	UIImageView* imageViewBackground;
 	BOOL firstRun;
 }
 
-@property(nonatomic, retain) NSMutableArray *arraySections;
+@property(nonatomic, retain) NSMutableArray *arrayButtons;
 @property(nonatomic, retain) UIImageView* imageViewBackground;
 
 - (void)initBackgroundImage;
 - (void)initButtons;
-- (BOOL)createListTableViewController:(NSDictionary*)_section;
+- (BOOL)showListTableViewController:(NSDictionary*)_section;
+- (BOOL)showPageViewController:(NSDictionary*)_page;
 
 @end

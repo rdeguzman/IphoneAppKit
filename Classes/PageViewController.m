@@ -48,12 +48,18 @@
 	NSLog(@"PageViewController.viewDidLoad");
     [super viewDidLoad];
 	
-	textview.font = [UIFont systemFontOfSize:14];
-	
-	textview.text = [info objectForKey:@"content"];
-	titleLabel.text = [info objectForKey:@"title"];
-	
+	NSString* page_id = [info objectForKey:@"id"];
 	DataAccess *da = [[DataAccess alloc] init];
+	NSDictionary* page = [[NSDictionary alloc] initWithDictionary:[da getPage:page_id]];
+	[da release];
+	
+	textview.font = [UIFont systemFontOfSize:14];
+	textview.text = [page objectForKey:@"content"];
+
+	titleLabel.text = [page objectForKey:@"title"];
+	[page release];
+	
+	da = [[DataAccess alloc] init];
 	UIImage *image = [da getDefaultFullImageForPage:[info objectForKey:@"id"]];
 	[da release];
 
@@ -72,7 +78,7 @@
 	imageview.alpha = 1;
 	[UIView commitAnimations];
 	
-	//[self.navigationController setNavigationBarHidden:YES animated:YES];
+	[self.navigationController setNavigationBarHidden:NO animated:YES];
 }
 
 /*

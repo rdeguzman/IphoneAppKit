@@ -29,9 +29,9 @@
 	da = nil;
 }
 
--(void)testGetMainSectionsShouldBe5 {
-	NSArray *arrayRecords = [[NSArray alloc] initWithArray:[da getMainSections]];
-    GHAssertEquals(5, (int)[arrayRecords count], nil);
+-(void)testGetButtons {
+	NSArray *arrayRecords = [[NSArray alloc] initWithArray:[da getButtons]];
+	GHAssertGreaterThan( (int)arrayRecords.count, 0, nil);
 	[arrayRecords release];
 }
 
@@ -58,6 +58,11 @@
 	NSDictionary* page = [arrayPages objectAtIndex:0];
 	NSString* page_id = [page objectForKey:@"id"];
 	GHAssertNotNil([da getDefaultFullImageForPage:page_id], nil);
+}
+
+-(void)testShouldGetPage{
+	NSDictionary* page = [da getPage:@"1"];
+	GHAssertNotNil( page, nil);
 }
 
 @end

@@ -45,12 +45,12 @@
 	[super dealloc];
 }
 
-- (NSMutableArray*)getMainSections{
-	NSLog(@"DataAccess.getMainSections");
+- (NSMutableArray*)getButtons{
+	NSLog(@"DataAccess.getButtons");
 	
 	NSMutableArray *array = [[[NSMutableArray alloc] initWithObjects:nil] autorelease];
 	
-	rs = [db executeQuery:@"SELECT * FROM sections"];
+	rs = [db executeQuery:@"SELECT * FROM buttons"];
 	
 	if ([db hadError]) {
         NSLog(@"Err %d: %@", [db lastErrorCode], [db lastErrorMessage]);
@@ -58,18 +58,20 @@
 	
 	while ([rs next]) {
 		NSArray *arrayObjects = [[[NSArray alloc] initWithObjects:	
-								  [rs stringForColumn:@"id"],
-								  [rs stringForColumn:@"title"], 
-								 nil] autorelease];
+								  [rs stringForColumn:@"parent_id"],
+								  [rs stringForColumn:@"button_index"], 
+								  [rs stringForColumn:@"title"],
+								  [rs stringForColumn:@"table_name"],
+								  nil] autorelease];
 		
-		NSArray *arrayKeys = [[[NSArray alloc] initWithObjects:@"id", @"title", nil] autorelease];
+		NSArray *arrayKeys = [[[NSArray alloc] initWithObjects:@"id", @"button_index", @"title", @"table_name", nil] autorelease];
 		
 		NSDictionary *obj = [[[NSDictionary alloc] initWithObjects:arrayObjects forKeys:arrayKeys] autorelease];
 		
 		[array addObject:obj];
 	}
 	
-	NSLog(@"DataAccess.getMainSections: %d found", [array count]);
+	NSLog(@"DataAccess.getButtons: %d found", [array count]);
 	
 	[rs close];
 	
@@ -94,6 +96,37 @@
 	[rs close];
 	
 	return image;
+}
+
+- (NSDictionary*)getPage:(NSString*)_page_id{
+	NSLog(@"DataAccess.getPage: %@", _page_id);
+	
+	NSDictionary *obj = nil;
+	
+	rs = [db executeQuery:@"SELECT * FROM pages WHERE id = ?", _page_id];
+	
+	if ([db hadError]) {
+        NSLog(@"Err %d: %@", [db lastErrorCode], [db lastErrorMessage]);
+    }
+	
+	if ([rs next]) {
+		NSArray *arrayObjects = [[[NSArray alloc] initWithObjects:	
+								  [rs stringForColumn:@"id"],
+								  [rs stringForColumn:@"title"],
+								  [rs stringForColumn:@"sub_title"],
+								  [rs stringForColumn:@"content"],
+								  nil] autorelease];
+		
+		NSArray *arrayKeys = [[[NSArray alloc] initWithObjects:@"id", @"title", @"sub_title", @"content", nil] autorelease];
+		
+		obj = [[[NSDictionary alloc] initWithObjects:arrayObjects forKeys:arrayKeys] autorelease];
+	}
+	
+	NSLog(@"DataAccess.getPage: %@ found", [obj	objectForKey:@"title"]);
+	
+	[rs close];
+	
+	return obj;
 }
 
 - (NSMutableArray*)getPagesForSection:(NSString*)_section_id{

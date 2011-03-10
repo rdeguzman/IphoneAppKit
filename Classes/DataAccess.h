@@ -16,9 +16,11 @@
 
 - (id)initWithPath:(NSString*)_path;
 
-- (NSMutableArray*)getMainSections;
+- (NSMutableArray*)getButtons;
 
 - (UIImage*)getAppBackgroundImage;
+
+- (NSDictionary*)getPage:(NSString*)_page_id;
 
 - (NSMutableArray*)getPagesForSection:(NSString*)_section_id;
 
