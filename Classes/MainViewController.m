@@ -21,7 +21,7 @@
     if (self) {
 		NSLog(@"MainViewController.init");
 
-		self.title = @"MainView";
+		self.title = @"Back";
 		
 		arrayButtons = nil;
 		imageViewBackground = nil;
@@ -106,10 +106,42 @@
 }
 
 #define PADDING_VERTICAL 5.0f
-#define BUTTON_HEIGHT 40.0f
+#define PADDING_HORIZONTAL 5.0f
+#define BUTTON_HEIGHT 34j.0f
 #define BUTTON_WIDTH 160.0f
 #define BUTTON_ORIGIN_X (320.0f - BUTTON_WIDTH)/2.0f
 #define BUTTON_ORIGIN_Y 20.0f
+#define BUTTON_FONT [UIFont boldSystemFontOfSize:14.0f]
+
+-(CGFloat)computeForButtonOriginY:(NSArray*)buttons{
+	CGFloat totalHeight = 0;
+	for(int i=0;i < arrayButtons.count; i++){
+		totalHeight = totalHeight + BUTTON_HEIGHT + PADDING_VERTICAL;
+	}
+	CGSize size = [[UIScreen mainScreen] applicationFrame].size;
+	return (size.height - totalHeight)/2.0f;
+}
+
+-(CGFloat)computeForButtonWidth:(NSArray*)buttons{
+	CGSize appSize = [[UIScreen mainScreen] applicationFrame].size;
+	CGFloat longestWidth = 0;
+	for(int i=0;i < buttons.count; i++){
+		NSString* title = [[buttons objectAtIndex:i] objectForKey:@"title"];
+		struct CGSize size = [title sizeWithFont: BUTTON_FONT constrainedToSize:CGSizeMake(appSize.width, BUTTON_HEIGHT) lineBreakMode:UILineBreakModeCharacterWrap];
+		
+		NSLog(@"computeForButtonWidth: %f", size.width);
+		if(size.width > longestWidth){
+			longestWidth = size.width;
+		}
+	}
+	
+	//NSLog(@"computeForButtonWidth longestWidth: %f", longestWidth);
+	if(longestWidth < BUTTON_WIDTH){
+		longestWidth = BUTTON_WIDTH;
+	}
+	
+	return longestWidth;
+}
 
 - (void)initButtons{
 	NSLog(@"MainViewController.initButtons");
@@ -120,22 +152,23 @@
 		[da release];
 	}
 	
-	CGFloat totalHeight = BUTTON_ORIGIN_Y;
+	CGFloat totalHeight = [self computeForButtonOriginY:arrayButtons];
+	CGFloat buttonWidth = PADDING_VERTICAL + [self computeForButtonWidth:arrayButtons] + PADDING_VERTICAL;
 	
-	UIImage* buttonImage = [UIImage imageNamed:@"button_center_light_gray.png"];
+	UIImage* buttonImage = [UIImage imageNamed:@"button_center_ts.png"];
 
 	for(int i=0;i < arrayButtons.count; i++){
 		NSString* title = [[arrayButtons objectAtIndex:i] objectForKey:@"title"];
 		
 		UIButton* button = [UIButton buttonWithType:UIButtonTypeCustom];
-		button.frame = CGRectMake(BUTTON_ORIGIN_X, totalHeight, BUTTON_WIDTH, BUTTON_HEIGHT);
+		button.frame = CGRectMake(BUTTON_ORIGIN_X, totalHeight, buttonWidth, BUTTON_HEIGHT);
 		[button setBackgroundImage:buttonImage forState:UIControlStateNormal];
 		
 		[button addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchDown];
 		[button setTitle:title forState:UIControlStateNormal];
 		[button setTag:i];
 		
-		button.titleLabel.font = [UIFont boldSystemFontOfSize:14.0f];
+		button.titleLabel.font = BUTTON_FONT;
 		
 		[self.view addSubview:button];
 		
@@ -158,8 +191,6 @@
 	else if( [tableName isEqualToString:@"Page"] ){
 		[self showPageViewController:buttonData];
 	}
-	
-	
 }
 
 - (BOOL)showListTableViewController:(NSDictionary*)_section{

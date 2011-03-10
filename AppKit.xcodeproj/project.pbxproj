@@ -31,6 +31,7 @@
 		9A855A7B13263C49001AE438 /* PageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A855A7913263C49001AE438 /* PageViewController.m */; };
 		9A855A8413263C87001AE438 /* PageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A855A8313263C87001AE438 /* PageViewController.xib */; };
 		9A855A8F13263D4C001AE438 /* enlarge.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A855A8E13263D4C001AE438 /* enlarge.png */; };
+		9A9AED3A1328E4F200F05423 /* button_center_ts.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A9AED391328E4F200F05423 /* button_center_ts.png */; };
 		9AA68E071324C2F100FB9923 /* TestApplicationDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AA68E061324C2F100FB9923 /* TestApplicationDelegate.m */; };
 		9AA68EEC1324CDA800FB9923 /* ListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AA68EEB1324CDA800FB9923 /* ListTableViewController.m */; };
 		9AA68EEF1324CE3B00FB9923 /* ListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AA68EEB1324CDA800FB9923 /* ListTableViewController.m */; };
@@ -44,7 +45,6 @@
 		9AC3FBEF13208D3D0065FC50 /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AC3FBEB13208D3D0065FC50 /* FMResultSet.m */; };
 		9AC3FC0413208E2C0065FC50 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AC3FC0313208E2C0065FC50 /* MainViewController.m */; };
 		9AC3FC3A13208F4D0065FC50 /* DataAccess.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AC3FC3913208F4D0065FC50 /* DataAccess.m */; };
-		9AC3FDF81320ADBA0065FC50 /* button_center_light_gray.png in Resources */ = {isa = PBXBuildFile; fileRef = 9AC3FDF71320ADBA0065FC50 /* button_center_light_gray.png */; };
 		9AEE86991321B11F009D90EE /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
 		9AEE869A1321B11F009D90EE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		9AEE869B1321B11F009D90EE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
@@ -81,6 +81,7 @@
 		9A855A7913263C49001AE438 /* PageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PageViewController.m; path = Classes/PageViewController.m; sourceTree = SOURCE_ROOT; };
 		9A855A8313263C87001AE438 /* PageViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = PageViewController.xib; path = Resources/xibs/PageViewController.xib; sourceTree = SOURCE_ROOT; };
 		9A855A8E13263D4C001AE438 /* enlarge.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = enlarge.png; path = Resources/images/enlarge.png; sourceTree = SOURCE_ROOT; };
+		9A9AED391328E4F200F05423 /* button_center_ts.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_center_ts.png; sourceTree = "<group>"; };
 		9AA68E051324C2F100FB9923 /* TestApplicationDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestApplicationDelegate.h; path = UnitTests/TestApplicationDelegate.h; sourceTree = SOURCE_ROOT; };
 		9AA68E061324C2F100FB9923 /* TestApplicationDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TestApplicationDelegate.m; path = UnitTests/TestApplicationDelegate.m; sourceTree = SOURCE_ROOT; };
 		9AA68EEA1324CDA800FB9923 /* ListTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListTableViewController.h; sourceTree = "<group>"; };
@@ -100,7 +101,6 @@
 		9AC3FC0313208E2C0065FC50 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		9AC3FC3813208F4D0065FC50 /* DataAccess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataAccess.h; sourceTree = "<group>"; };
 		9AC3FC3913208F4D0065FC50 /* DataAccess.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataAccess.m; sourceTree = "<group>"; };
-		9AC3FDF71320ADBA0065FC50 /* button_center_light_gray.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = button_center_light_gray.png; path = Resources/images/buttons/button_center_light_gray.png; sourceTree = SOURCE_ROOT; };
 		9AEE86911321B0E9009D90EE /* UnitTests.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UnitTests.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AEE86931321B0E9009D90EE /* UnitTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "UnitTests-Info.plist"; sourceTree = "<group>"; };
 		9AEE86D31321B34E009D90EE /* GHUnitIOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GHUnitIOS.framework; path = /Volumes/rupert/projects/iphone/GHUnitIOS.framework; sourceTree = "<absolute>"; };
@@ -278,7 +278,7 @@
 		9AC3FDF61320ADBA0065FC50 /* buttons */ = {
 			isa = PBXGroup;
 			children = (
-				9AC3FDF71320ADBA0065FC50 /* button_center_light_gray.png */,
+				9A9AED391328E4F200F05423 /* button_center_ts.png */,
 			);
 			name = buttons;
 			path = Resources/images/buttons;
@@ -369,9 +369,9 @@
 			files = (
 				28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */,
 				9AC3FBDF13208D040065FC50 /* appkit.db in Resources */,
-				9AC3FDF81320ADBA0065FC50 /* button_center_light_gray.png in Resources */,
 				9A855A8413263C87001AE438 /* PageViewController.xib in Resources */,
 				9A855A8F13263D4C001AE438 /* enlarge.png in Resources */,
+				9A9AED3A1328E4F200F05423 /* button_center_ts.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
