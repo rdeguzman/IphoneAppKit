@@ -80,6 +80,8 @@
 	
 	self.title = [info objectForKey:@"title"];
 	
+	[self setWantsFullScreenLayout:NO];
+	
 	[self.navigationController setNavigationBarHidden:NO animated:YES];
 }
 
