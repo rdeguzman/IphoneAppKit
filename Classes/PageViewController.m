@@ -8,8 +8,8 @@
 
 #import "PageViewController.h"
 #import "DataAccess.h"
-//#import "KTPhotoScrollViewController.h"
-//#import "PhotoDataSource.h"
+#import "KTPhotoScrollViewController.h"
+#import "PhotoDataSource.h"
 
 @implementation PageViewController
 
@@ -78,6 +78,8 @@
 	imageview.alpha = 1;
 	[UIView commitAnimations];
 	
+	self.title = [info objectForKey:@"title"];
+	
 	[self.navigationController setNavigationBarHidden:NO animated:YES];
 }
 
@@ -103,16 +105,17 @@
 }
 
 - (IBAction)buttonImagePressed{
-	/*
 	NSLog(@"PageViewControllerb.buttonImagePressed");
+	self.title = @"Back";
 	
 	NSMutableArray *arrayPhotos = [[NSMutableArray alloc] initWithObjects:nil];
 	
-	NSString *file_name_full = [NSString stringWithFormat:@"%@.jpg", [info objectForKey:@"full_image"]];
-	NSLog(@"file_name_full: %@", file_name_full);
-	UIImage *fullImage = [UIImage imageNamed:file_name_full];
+	NSString* page_id = [info objectForKey:@"id"];
+	DataAccess *da = [[DataAccess alloc] init];
+	UIImage *full_image = [da getDefaultFullImageForPage:page_id];
+	[da release];
 	
-	NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys: fullImage, @"fullsize", nil];
+	NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys: full_image, @"full_image", nil];
 	[arrayPhotos addObject:dict];
 		
 	
@@ -125,7 +128,6 @@
 	
 	[[self navigationController] pushViewController:newController animated:YES];
 	[newController release];
-	 */
 }
 
 @end

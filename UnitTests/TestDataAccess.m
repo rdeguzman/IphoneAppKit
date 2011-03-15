@@ -65,4 +65,17 @@
 	GHAssertNotNil( page, nil);
 }
 
+-(void)testShouldHavePictures{
+	NSMutableArray* arrayPages = [da getAllPictures];
+	GHAssertGreaterThan( (int)arrayPages.count, 0, nil);
+}
+
+-(void)testShouldGetThumbImageForPictureId{
+	GHAssertNotNil([da getThumbImageForPictureId:@"1"], nil);
+}
+
+-(void)testShouldGetFullImageForPictureId{
+	GHAssertNotNil([da getFullImageForPictureId:@"1"], nil);
+}
+
 @end

@@ -28,4 +28,11 @@
 
 - (UIImage*)getDefaultFullImageForPage:(NSString*)_page_id;
 
+- (NSMutableArray*)getAllPictures;
+
+- (UIImage*)getThumbImageForPictureId:(NSString*)_picture_id;
+
+- (UIImage*)getFullImageForPictureId:(NSString*)_picture_id;
+
+
 @end

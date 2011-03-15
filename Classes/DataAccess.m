@@ -11,6 +11,8 @@
 
 @interface DataAccess(private)
 - (NSData*)getImageForPage:(NSString*)_page_id dataColumn:(NSString*)_column;
+- (NSData*)getImageForPictureId:(NSString*)_picture_id dataColumn:(NSString*)_column;
+- (NSString*)getBlankStringIfNull:(NSString*)_inputString;
 @end
 
 
@@ -195,26 +197,80 @@
 	return data;
 }
 
-- (UIImage*)getImageForPageTest:(NSString*)_page_id dataColumn:(NSString*)_column{
-	NSLog(@"DataAccess.getImageForPage %@", _page_id);
-	UIImage* image = nil;
+- (NSMutableArray*)getAllPictures{
+	NSLog(@"DataAccess.getAllPictures");
 	
-	rs = [db executeQuery:@"SELECT * FROM pictures WHERE page_id = ? LIMIT 1", _page_id];
+	NSMutableArray *array = [[[NSMutableArray alloc] initWithObjects:nil] autorelease];
+	
+	rs = [db executeQuery:@"SELECT id, caption_title, caption_description, page_id FROM pictures"];
+	
+	if ([db hadError]) {
+        NSLog(@"Err %d: %@", [db lastErrorCode], [db lastErrorMessage]);
+    }
+	
+	while ([rs next]) {
+		NSArray *arrayObjects = [[[NSArray alloc] initWithObjects:	
+								  [rs stringForColumn:@"id"],
+								  [self getBlankStringIfNull:[rs stringForColumn:@"caption_title"]],
+								  [self getBlankStringIfNull:[rs stringForColumn:@"caption_description"]],
+								  [rs stringForColumn:@"page_id"],
+								  nil] autorelease];
+		
+		NSArray *arrayKeys = [[[NSArray alloc] initWithObjects:@"id", @"caption_title", @"caption_description", @"page_id", nil] autorelease];
+		
+		NSDictionary *obj = [[[NSDictionary alloc] initWithObjects:arrayObjects forKeys:arrayKeys] autorelease];
+		
+		[array addObject:obj];
+	}
+	
+	NSLog(@"DataAccess.getAllPictures: %d found", [array count]);
+	
+	[rs close];
+	
+	return array;
+}
+
+- (NSString*)getBlankStringIfNull:(NSString*)_inputString{
+	if( _inputString != nil ){
+		return _inputString;
+	}
+	else{
+		return @"";
+	}
+}
+
+- (UIImage*)getThumbImageForPictureId:(NSString*)_picture_id{
+	NSData* imageData = [self getImageForPictureId:_picture_id dataColumn:@"thumb_image"];
+	UIImage* image = [[[UIImage alloc] initWithData:imageData] autorelease];
+	NSLog(@"DataAccess.getThumbImageForPictureId found image (%f, %f)", image.size.width, image.size.height);
+	return image;
+}
+
+- (UIImage*)getFullImageForPictureId:(NSString*)_picture_id{
+	NSData* imageData = [self getImageForPictureId:_picture_id dataColumn:@"full_image"];
+	UIImage* image = [[[UIImage alloc] initWithData:imageData] autorelease];
+	NSLog(@"DataAccess.getFullImageForPictureId found image (%f, %f)", image.size.width, image.size.height);
+	return image;
+}
+
+- (NSData*)getImageForPictureId:(NSString*)_picture_id dataColumn:(NSString*)_column{
+	NSLog(@"DataAccess.getImageForPictureId %@", _picture_id);
+	NSData* data = nil;
+	
+	rs = [db executeQuery:@"SELECT * FROM pictures WHERE id = ?", _picture_id];
 	
 	if ([db hadError]) {
         NSLog(@"Err %d: %@", [db lastErrorCode], [db lastErrorMessage]);
     }
 	
 	if( [rs next] ){
-		image = [[[UIImage alloc] initWithData:[rs dataForColumn:_column]] autorelease];
-		NSLog(@"DataAccess.getImageForPage found image (%f, %f)", image.size.width, image.size.height);
+		data = [[[NSData alloc] initWithData:[rs dataForColumn:_column]] autorelease];
 	}
 	
 	[rs close];
 	
-	return image;
+	return data;
 }
-
 
 
 @end
