@@ -21,7 +21,7 @@
 -(void)setUp {
 	//This should be the same in appkit.db > sections data
 	NSArray *arrayObjects = [[[NSArray alloc] initWithObjects:	
-							  @"2",
+							  @"34",
 							  @"Rooms", 
 							  nil] autorelease];
 	

@@ -130,6 +130,7 @@
 	
 	[[self navigationController] pushViewController:newController animated:YES];
 	[newController release];
+	[datasource release];
 }
 
 @end
