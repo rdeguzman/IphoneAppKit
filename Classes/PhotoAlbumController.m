@@ -32,10 +32,11 @@
 	NSMutableArray *arrayPhotos = [[NSMutableArray alloc] initWithObjects:nil];
 	
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+
+	DataAccess* da = [[DataAccess alloc] init];
 	
 	for(NSDictionary *picture in arrayURLPictures){
 		
-		DataAccess* da = [[DataAccess alloc] init];
 		NSString* picture_id = [picture objectForKey:@"id"];
 		UIImage *thumbImage = [da getThumbImageForPictureId:picture_id];
 		UIImage *fullImage = [da getFullImageForPictureId:picture_id];
@@ -44,6 +45,8 @@
 		[arrayPhotos addObject:dict];
 		
 	}
+	[da release];
+	
 	[pool drain];
 	
 	datasource = [[PhotoDataSource alloc] initWithArray:arrayPhotos];
