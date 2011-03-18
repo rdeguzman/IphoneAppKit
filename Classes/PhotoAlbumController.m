@@ -35,15 +35,12 @@
 	
 	for(NSDictionary *picture in arrayURLPictures){
 		
-		NSString *file_name_thumb = [NSString stringWithFormat:@"%@.jpg", [picture objectForKey:@"thumb_image"]];
-		NSLog(@"file_name_thumb: %@", file_name_thumb);
-		UIImage *thumbImage = [UIImage imageNamed:file_name_thumb];
-		
-		NSString *file_name_full = [NSString stringWithFormat:@"%@.jpg", [picture objectForKey:@"full_image"]];
-		NSLog(@"file_name_full: %@", file_name_full);
-		UIImage *fullImage = [UIImage imageNamed:file_name_full];
+		DataAccess* da = [[DataAccess alloc] init];
+		NSString* picture_id = [picture objectForKey:@"id"];
+		UIImage *thumbImage = [da getThumbImageForPictureId:picture_id];
+		UIImage *fullImage = [da getFullImageForPictureId:picture_id];
 
-		NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:thumbImage, @"thumbnail", fullImage, @"fullsize", nil];
+		NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:thumbImage, @"thumb_image", fullImage, @"full_image", nil];
 		[arrayPhotos addObject:dict];
 		
 	}

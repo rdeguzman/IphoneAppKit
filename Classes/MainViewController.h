@@ -22,5 +22,6 @@
 - (void)initButtons;
 - (BOOL)showListTableViewController:(NSDictionary*)_section;
 - (BOOL)showPageViewController:(NSDictionary*)_page;
+- (BOOL)showPhotosViewController;
 
 @end

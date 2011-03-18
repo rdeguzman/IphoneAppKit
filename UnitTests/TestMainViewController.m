@@ -52,4 +52,9 @@
 	GHAssertTrue(flag, nil);
 }
 
+-(void)testShouldShowPhotosViewController{
+	BOOL flag = [viewController showPhotosViewController];
+	GHAssertTrue(flag, nil);
+}
+
 @end

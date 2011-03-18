@@ -10,6 +10,7 @@
 #import "DataAccess.h"
 #import "ListTableViewController.h"
 #import "PageViewController.h"
+#import "PhotoAlbumController.h"
 
 @implementation MainViewController
 
@@ -191,6 +192,9 @@
 	else if( [tableName isEqualToString:@"Page"] ){
 		[self showPageViewController:buttonData];
 	}
+	else if( [tableName isEqualToString:@"Photos"] ){
+		[self showPhotosViewController];
+	}
 }
 
 - (BOOL)showListTableViewController:(NSDictionary*)_section{
@@ -216,4 +220,17 @@
 	flag = YES;
 	return flag;
 }
+
+- (BOOL)showPhotosViewController{
+	BOOL flag = NO;
+	
+	NSLog(@"MainViewController.showPhotosViewController");
+	PhotoAlbumController *thumbnailController = [[PhotoAlbumController alloc] init];
+	[self.navigationController pushViewController:thumbnailController animated:YES];
+	[thumbnailController release];
+	
+	flag = YES;
+	return flag;	
+}
+
 @end
