@@ -10,8 +10,7 @@
 
 @implementation ApplicationCell
 
-@synthesize useDarkBackground, photoUIView, subtitle, title;
-//, rating, numRatings, distance, rate;
+@synthesize useDarkBackground, photoUIView, subtitle1, subtitle2, title;
 
 - (void)setUseDarkBackground:(BOOL)flag
 {
@@ -30,10 +29,9 @@
 - (void)dealloc
 {
     [photoUIView release];
-    [subtitle release];
+    [subtitle1 release];
+	[subtitle2 release];
     [title release];
-//    [distance release];
-//    [rate release];
 	
     [super dealloc];
 }

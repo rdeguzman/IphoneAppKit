@@ -127,27 +127,30 @@
 	UIImage* image = [da getDefaultThumbImageForPage:page_id];
 	NSLog(@"image (%f, %f)", image.size.width, image.size.height);
   
-	UIImageView* imageView = [[UIImageView alloc] initWithImage:image];
-	imageView.frame = CGRectMake(PADDING_LEFT, PADDING_TOP, TABLEVIEW_CELL_IMAGEVIEW_WIDTH, TABLEVIEW_CELL_IMAGEVIEW_HEIGHT);
-	imageView.contentMode = UIViewContentModeScaleToFill;
-	imageView.alpha = 0;
-	[bgView addSubview:imageView];
-	
-	[UIView beginAnimations:@"fadePhotoThumb" context:NULL];
-	[UIView setAnimationDuration:0.75];
-	imageView.alpha = 1;
-	[UIView commitAnimations];
-	
-	cell.photoUIView = bgView;
-	[bgView release];
-    [da release];
-	[imageView release];
+	if( image != nil){
+		UIImageView* imageView = [[UIImageView alloc] initWithImage:image];
+		imageView.frame = CGRectMake(PADDING_LEFT, PADDING_TOP, TABLEVIEW_CELL_IMAGEVIEW_WIDTH, TABLEVIEW_CELL_IMAGEVIEW_HEIGHT);
+		imageView.contentMode = UIViewContentModeScaleToFill;
+		imageView.alpha = 0;
+		[bgView addSubview:imageView];
+		
+		[UIView beginAnimations:@"fadePhotoThumb" context:NULL];
+		[UIView setAnimationDuration:0.75];
+		imageView.alpha = 1;
+		[UIView commitAnimations];
+		
+		//cell.photoUIView = bgView;
+		[cell setPhotoUIView:bgView];
+		[bgView release];
+		[da release];
+		[imageView release];
+	}
 	
 	// Display dark and light background in alternate rows -- see tableView:willDisplayCell:forRowAtIndexPath:.
 	cell.useDarkBackground = (indexPath.row % 2 == 0);
-	
 	cell.title = [page objectForKey:@"title"];
-	cell.subtitle = [page objectForKey:@"content"];
+	cell.subtitle1 = [page objectForKey:@"sub_title"];
+	cell.subtitle2 = [page objectForKey:@"content"];
 	
 	return cell;
 }

@@ -12,8 +12,11 @@
 @interface UITableViewImageApplicationCell : ApplicationCell {
 	UIView *cellContentView;
 	UILabel* titleLabel;
-	UILabel* subtitleLabel;
+	UILabel* subtitle1Label;
+	UILabel* subtitle2Label;
 	UIView* photoImageView;
+	CGFloat imageCellContentLeft;
+	CGFloat imageCellContentWidth;
 }
 
 @end

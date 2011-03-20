@@ -14,14 +14,16 @@
     BOOL useDarkBackground;
 	
     UIView *photoUIView;
-    NSString *subtitle;
+    NSString *subtitle1;
+	NSString *subtitle2;
     NSString *title;
 }
 
 @property BOOL useDarkBackground;
 
 @property(retain) UIView *photoUIView;
-@property(retain) NSString *subtitle;
+@property(retain) NSString *subtitle1;
+@property(retain) NSString *subtitle2;
 @property(retain) NSString *title;
 
 @end

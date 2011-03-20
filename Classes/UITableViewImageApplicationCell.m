@@ -71,26 +71,12 @@
         cellContentView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         cellContentView.contentMode = UIViewContentModeLeft;
         [self.contentView addSubview:cellContentView];
-
-		titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(IMAGECELL_CONTENT_LEFT, 6.0f, IMAGECELL_CONTENT_TEXT_WIDTH, 20.0f)];
-        titleLabel.textAlignment = UITextAlignmentLeft;
-        titleLabel.font = [UIFont boldSystemFontOfSize:19.0];
-		titleLabel.textColor = [UIColor blackColor];
-        titleLabel.highlightedTextColor = [UIColor whiteColor];
-        titleLabel.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin;
-        [self.contentView addSubview:titleLabel];
-		
-		subtitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(IMAGECELL_CONTENT_LEFT, 25.0f, IMAGECELL_CONTENT_TEXT_WIDTH, 45.0f)];
-        subtitleLabel.textAlignment = UITextAlignmentLeft;
-        subtitleLabel.font = [UIFont boldSystemFontOfSize:11.0];
-        subtitleLabel.textColor = [UIColor colorWithWhite:0.23 alpha:1.0];
-		subtitleLabel.highlightedTextColor = [UIColor whiteColor];
-        subtitleLabel.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin;
-		subtitleLabel.numberOfLines = 3;
-        [self.contentView addSubview:subtitleLabel];
 		
 		photoImageView = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, TABLEVIEW_CELL_THUMB_BACKGROUND_WIDTH, TABLEVIEW_CELL_THUMB_BACKGROUND_HEIGHT)];
 		[self.contentView addSubview:photoImageView];
+		
+		imageCellContentLeft = 3.0f;
+		imageCellContentWidth = 315.0f;
     }
     
     return self;
@@ -100,32 +86,79 @@
     [super setBackgroundColor:backgroundColor];
     cellContentView.backgroundColor = backgroundColor;
 	titleLabel.backgroundColor = backgroundColor;
-	subtitleLabel.backgroundColor = backgroundColor;
+	subtitle1Label.backgroundColor = backgroundColor;
+	subtitle2Label.backgroundColor = backgroundColor;
 	photoImageView.backgroundColor = backgroundColor;
 }
 
 - (void)setTitle:(NSString *)_name{
     [super setTitle:_name];
-    titleLabel.text = _name;
+    //titleLabel.text = _name;
+	
+	titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(imageCellContentLeft, 6.0f, imageCellContentWidth, 20.0f)];
+	titleLabel.textAlignment = UITextAlignmentLeft;
+	titleLabel.font = [UIFont boldSystemFontOfSize:19.0];
+	titleLabel.textColor = [UIColor blackColor];
+	titleLabel.highlightedTextColor = [UIColor whiteColor];
+	titleLabel.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin;
+	titleLabel.text = _name;
+	[self.contentView addSubview:titleLabel];
 }
 
-- (void)setSubtitle:(NSString *)_text{
-    [super setSubtitle:_text];
-    subtitleLabel.text = _text;
+- (void)setSubtitle1:(NSString *)_text{
+	NSLog(@"setSubtitle1: %@", _text);
+    [super setSubtitle1:_text];
+    //subtitle1Label.text = _text;
+	
+	subtitle1Label = [[UILabel alloc] initWithFrame:CGRectMake(imageCellContentLeft, 25.0f, imageCellContentWidth, 15.0f)];
+	subtitle1Label.textAlignment = UITextAlignmentLeft;
+	subtitle1Label.font = [UIFont boldSystemFontOfSize:10.0];
+	subtitle1Label.textColor = [UIColor whiteColor];
+	subtitle1Label.highlightedTextColor = [UIColor whiteColor];
+	subtitle1Label.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin;
+	subtitle1Label.numberOfLines = 1;
+	subtitle1Label.text = _text;
+	[self.contentView addSubview:subtitle1Label];
+}
+
+- (void)setSubtitle2:(NSString *)_text{
+	NSLog(@"setSubtitle2: %@", _text);
+	[super setSubtitle2:_text];
+	
+	if( [subtitle1Label.text length] > 0){
+		subtitle2Label = [[UILabel alloc] initWithFrame:CGRectMake(imageCellContentLeft, 42.0f, imageCellContentWidth, 25.0f)];
+		subtitle2Label.numberOfLines = 2;
+	}
+	else{
+		subtitle2Label = [[UILabel alloc] initWithFrame:CGRectMake(imageCellContentLeft, 25.0f, imageCellContentWidth, 45.0f)];
+		subtitle2Label.numberOfLines = 3;
+	}
+	
+	subtitle2Label.textAlignment = UITextAlignmentLeft;
+	subtitle2Label.font = [UIFont boldSystemFontOfSize:11.0];
+	subtitle2Label.textColor = [UIColor colorWithWhite:0.23 alpha:1.0];
+	subtitle2Label.highlightedTextColor = [UIColor whiteColor];
+	subtitle2Label.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin;
+	subtitle2Label.text = _text;
+	[self.contentView addSubview:subtitle2Label];
 }
 
 - (void)setPhotoUIView:(UIView *)_view{
+	NSLog(@"setPhotoUIView");
 	for(UIView* _view in photoImageView.subviews){
 		[_view removeFromSuperview];
 	}
 	
 	[photoImageView addSubview:_view];
+	imageCellContentLeft = IMAGECELL_CONTENT_LEFT;
+	imageCellContentWidth = IMAGECELL_CONTENT_TEXT_WIDTH;
 }
 
 - (void)dealloc{
     [cellContentView release];
 	[titleLabel release];
-	[subtitleLabel release];
+	[subtitle1Label release];
+	[subtitle2Label release];
 	[photoImageView release];
 	
     [super dealloc];
