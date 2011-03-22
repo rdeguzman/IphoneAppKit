@@ -63,6 +63,8 @@
 		9AC3FC0413208E2C0065FC50 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AC3FC0313208E2C0065FC50 /* MainViewController.m */; };
 		9AC3FC3A13208F4D0065FC50 /* DataAccess.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AC3FC3913208F4D0065FC50 /* DataAccess.m */; };
 		9ADE8A6F1330954700552B0E /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 9ADE8A6E1330954700552B0E /* Icon.png */; };
+		9AE93D7213389E9A007325A2 /* TestPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AE93D7113389E9A007325A2 /* TestPageViewController.m */; };
+		9AE93E601338A539007325A2 /* PageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A855A8313263C87001AE438 /* PageViewController.xib */; };
 		9AEE86991321B11F009D90EE /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
 		9AEE869A1321B11F009D90EE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		9AEE869B1321B11F009D90EE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
@@ -138,6 +140,7 @@
 		9AC3FC3813208F4D0065FC50 /* DataAccess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataAccess.h; sourceTree = "<group>"; };
 		9AC3FC3913208F4D0065FC50 /* DataAccess.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataAccess.m; sourceTree = "<group>"; };
 		9ADE8A6E1330954700552B0E /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		9AE93D7113389E9A007325A2 /* TestPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TestPageViewController.m; path = UnitTests/TestPageViewController.m; sourceTree = "<group>"; };
 		9AEE86911321B0E9009D90EE /* UnitTests.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UnitTests.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AEE86931321B0E9009D90EE /* UnitTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "UnitTests-Info.plist"; sourceTree = "<group>"; };
 		9AEE86D31321B34E009D90EE /* GHUnitIOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GHUnitIOS.framework; path = /Volumes/rupert/projects/iphone/GHUnitIOS.framework; sourceTree = "<absolute>"; };
@@ -367,6 +370,7 @@
 				9A28A1D31321FCBC00CB5C68 /* TestDataAccess.m */,
 				9AB853F013238B7C00F8CD87 /* TestMainViewController.m */,
 				9AA68F481324D0F300FB9923 /* TestListTableViewController.m */,
+				9AE93D7113389E9A007325A2 /* TestPageViewController.m */,
 			);
 			name = UnitTests;
 			sourceTree = "<group>";
@@ -455,6 +459,7 @@
 			files = (
 				9A28A1151321F06600CB5C68 /* appkit.app in Resources */,
 				9A28A1161321F06700CB5C68 /* appkit.db in Resources */,
+				9AE93E601338A539007325A2 /* PageViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -513,6 +518,7 @@
 				9A5990251330DC8600957AAD /* KTThumbView.m in Sources */,
 				9A5990261330DC8F00957AAD /* PhotoAlbumController.m in Sources */,
 				9A5990291330DCA900957AAD /* KTPhotoBrowserGlobal.m in Sources */,
+				9AE93D7213389E9A007325A2 /* TestPageViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -172,9 +172,14 @@
 }
 
 - (UIImage*)getDefaultFullImageForPage:(NSString*)_page_id{
+	UIImage* image = nil;
+	
 	NSData* imageData = [self getImageForPage:_page_id dataColumn:@"full_image"];
-	UIImage* image = [[[UIImage alloc] initWithData:imageData] autorelease];
-	NSLog(@"DataAccess.getFullThumbImageForPage found image (%f, %f)", image.size.width, image.size.height);
+	if(imageData != nil){
+		image = [[[UIImage alloc] initWithData:imageData] autorelease];
+		NSLog(@"DataAccess.getFullThumbImageForPage found image (%f, %f)", image.size.width, image.size.height);
+	}
+	
 	return image;
 }
 
